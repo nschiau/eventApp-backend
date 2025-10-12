@@ -1,0 +1,20 @@
+{
+  "name": "eventapp-backend",
+  "version": "1.0.0",
+  "description": "EventHorizon .NET Web API Backend",
+  "scripts": {
+    "build": "dotnet build",
+    "start": "dotnet run",
+    "publish": "dotnet publish -c Release",
+    "restore": "dotnet restore",
+    "clean": "dotnet clean"
+  },
+  "keywords": [
+    "dotnet",
+    "webapi",
+    "eventhorizon",
+    "events"
+  ],
+  "author": "EventHorizon Team",
+  "license": "MIT"
+}
