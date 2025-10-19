@@ -11,8 +11,8 @@ WORKDIR /src
 COPY src/EventHorizon.Api/EventHorizon.Api.csproj EventHorizon.Api/
 RUN dotnet restore EventHorizon.Api/EventHorizon.Api.csproj
 
-# Now copy everything
-COPY . .
+# Copy full source folder (not entire repo)
+COPY src/EventHorizon.Api/ ./EventHorizon.Api/
 
 # Switch into the project directory
 WORKDIR /src/EventHorizon.Api
