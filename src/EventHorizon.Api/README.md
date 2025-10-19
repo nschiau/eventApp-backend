@@ -1,4 +1,5 @@
 # EventApp Backend
+# CD pipeline
 
 .NET 9 Web API backend for the EventHorizon application.
 
