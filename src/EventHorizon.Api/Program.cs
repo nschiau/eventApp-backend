@@ -8,6 +8,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Add Health Checks
+builder.Services.AddHealthChecks();
+
 // Add CORS
 builder.Services.AddCors(options =>
 {
@@ -21,7 +24,7 @@ builder.Services.AddCors(options =>
 });
 
 // Add Entity Framework
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") 
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
     ?? "Host=postgres;Database=eventhorizon;Username=postgres;Password=postgres;Port=5432";
 
 builder.Services.AddDbContext<EventHorizonDbContext>(options =>
@@ -30,15 +33,18 @@ builder.Services.AddDbContext<EventHorizonDbContext>(options =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+// if (app.Environment.IsDevelopment())
+// {
+app.UseSwagger();
+app.UseSwaggerUI();
+// }
 
 app.UseCors("AllowFrontend");
 app.UseAuthorization();
 app.MapControllers();
+
+// Health endpoint
+app.MapHealthChecks("/health");
 
 // Ensure database is created
 using (var scope = app.Services.CreateScope())
