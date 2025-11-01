@@ -1,16 +1,17 @@
 # EventHorizon API - Backend
-# Test dockerhub
 
 A modern .NET 9 Web API for event management with Entity Framework Core, PostgreSQL, and comprehensive unit testing.
 
 ## 🚀 Quick Start
 
 ### Prerequisites
+
 - .NET 9 SDK
 - PostgreSQL (or use Docker)
 - Git
 
 ### Run with Docker (Recommended)
+
 ```bash
 # Clone the repository
 git clone <your-backend-repo-url>
@@ -19,10 +20,12 @@ cd eventapp-backend
 # Start with Docker Compose (includes PostgreSQL)
 docker-compose up --build
 ```
+
 - **API**: http://localhost:8080
 - **Swagger Documentation**: http://localhost:8080/swagger
 
 ### Local Development
+
 ```bash
 # Install .NET 9 SDK if not already installed
 # Clone and navigate to project
@@ -81,6 +84,7 @@ eventapp-backend/
 ## 📊 API Endpoints
 
 ### Events
+
 - `GET /api/events` - Get all events (with optional date filtering)
 - `GET /api/events/{id}` - Get event by ID
 - `GET /api/events/category/{category}` - Get events by category
@@ -89,6 +93,7 @@ eventapp-backend/
 - `DELETE /api/events/{id}` - Delete event
 
 ### Users
+
 - `POST /api/users/register` - Register new user
 - `POST /api/users/login` - User login (creates user if not exists)
 - `GET /api/users/{id}` - Get user by ID
@@ -114,6 +119,7 @@ dotnet test --collect:"XPlat Code Coverage"
 ```
 
 ### Test Coverage
+
 - **Total Tests**: 15
 - **Events API**: 7 tests (CRUD operations, filtering, error handling)
 - **Users API**: 8 tests (registration, login, validation, availability)
@@ -122,6 +128,7 @@ dotnet test --collect:"XPlat Code Coverage"
 ## 🐳 Docker Setup
 
 ### Development with Docker Compose
+
 ```bash
 # Start PostgreSQL + API
 docker-compose up --build
@@ -134,6 +141,7 @@ docker-compose logs -f api
 ```
 
 ### Production Docker Build
+
 ```bash
 # Build API image
 docker build -t eventhorizon-api -f src/EventHorizon.Api/Dockerfile .
@@ -147,7 +155,9 @@ docker run -p 8080:8080 \
 ## ⚙️ Configuration
 
 ### Database Connection
+
 Configure in `src/EventHorizon.Api/appsettings.json`:
+
 ```json
 {
   "ConnectionStrings": {
@@ -157,12 +167,15 @@ Configure in `src/EventHorizon.Api/appsettings.json`:
 ```
 
 ### Environment Variables
+
 - `ASPNETCORE_ENVIRONMENT`: Development/Production
 - `ASPNETCORE_URLS`: Binding URLs
 - `ConnectionStrings__DefaultConnection`: Database connection string
 
 ### CORS Configuration
+
 Currently configured for frontend at:
+
 - http://localhost:3000 (React dev server)
 - http://localhost:3001 (Docker frontend)
 - http://localhost:5173 (Vite dev server)
@@ -170,6 +183,7 @@ Currently configured for frontend at:
 ## 🚀 Development Workflow
 
 ### Adding New Features
+
 1. **Create Model**: Add to `src/EventHorizon.Api/Models/`
 2. **Update DbContext**: Modify `EventHorizonDbContext.cs`
 3. **Create Controller**: Add to `src/EventHorizon.Api/Controllers/`
@@ -178,6 +192,7 @@ Currently configured for frontend at:
 6. **Update Documentation**: Update this README
 
 ### Database Migrations
+
 ```bash
 cd src/EventHorizon.Api
 
@@ -189,6 +204,7 @@ dotnet ef database update
 ```
 
 ### Adding Packages
+
 ```bash
 # Add to API project
 dotnet add src/EventHorizon.Api package PackageName
@@ -200,6 +216,7 @@ dotnet add tests/EventHorizon.Api.Tests package PackageName
 ## 📝 API Examples
 
 ### Create Event
+
 ```bash
 curl -X POST http://localhost:8080/api/events \
   -H "Content-Type: application/json" \
@@ -214,11 +231,13 @@ curl -X POST http://localhost:8080/api/events \
 ```
 
 ### Get Events by Category
+
 ```bash
 curl http://localhost:8080/api/events/category/Technology
 ```
 
 ### Register User
+
 ```bash
 curl -X POST http://localhost:8080/api/users/register \
   -H "Content-Type: application/json" \
@@ -231,12 +250,14 @@ curl -X POST http://localhost:8080/api/users/register \
 ## 🔒 Security Notes
 
 ⚠️ **Important**: This is a development version with basic security:
+
 - Passwords are stored in plain text (use hashing in production)
 - No authentication tokens (implement JWT in production)
 - Basic CORS configuration (restrict in production)
 - No rate limiting (add in production)
 
 ### Production Recommendations
+
 - Implement password hashing (bcrypt)
 - Add JWT authentication
 - Use HTTPS only
@@ -250,6 +271,7 @@ curl -X POST http://localhost:8080/api/users/register \
 ### Common Issues
 
 **Build Errors**
+
 ```bash
 # Clear build artifacts
 dotnet clean
@@ -258,11 +280,13 @@ dotnet build
 ```
 
 **Database Connection Issues**
+
 - Ensure PostgreSQL is running
 - Check connection string in `appsettings.json`
 - Verify database exists
 
 **Port Already in Use**
+
 ```bash
 # Kill process on port 8080
 netstat -ano | findstr :8080
@@ -270,6 +294,7 @@ taskkill /PID <PID> /F
 ```
 
 **Test Failures**
+
 ```bash
 # Run tests with detailed output
 dotnet test --logger "console;verbosity=detailed"
@@ -302,16 +327,19 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## 🚀 Deployment
 
 ### Azure App Service
+
 1. Create App Service with .NET 9
 2. Configure connection string in Application Settings
 3. Deploy using GitHub Actions or Azure CLI
 
 ### AWS Elastic Beanstalk
+
 1. Create .NET environment
 2. Package application: `dotnet publish -c Release`
 3. Deploy ZIP file
 
 ### Heroku
+
 1. Add Heroku PostgreSQL addon
 2. Configure buildpacks for .NET
 3. Deploy via Git push
