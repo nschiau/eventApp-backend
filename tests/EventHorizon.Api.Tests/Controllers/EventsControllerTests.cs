@@ -42,7 +42,7 @@ public class EventsControllerTests : IDisposable
 
         events.Should().HaveCount(3);
         events.Should().BeInDescendingOrder(e => e.Date);
-        events.First().Title.Should().NotBe("Test Event 3"); // Latest date
+        events.First().Title.Should().Be("Test Event 3");
     }
 
     [Fact]
