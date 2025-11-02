@@ -1,8 +1,8 @@
 # EventHorizon API - Backend
 
-A modern .NET 9 Web API for event management with Entity Framework Core, PostgreSQL, and comprehensive unit testing.
+A modern .NET 9 Web API for event management with Entity Framework Core, PostgreSQL and comprehensive unit testing.
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
