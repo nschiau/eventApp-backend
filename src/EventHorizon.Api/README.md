@@ -1,4 +1,4 @@
-# EventApp Backend.
+# EventApp Backend
 
 # CD pipeline
 
