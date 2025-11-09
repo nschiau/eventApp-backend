@@ -39,10 +39,10 @@ public class EventsControllerTests : IDisposable
         // Assert
         var actionResult = result.Result.Should().BeOfType<OkObjectResult>().Subject;
         var events = actionResult.Value.Should().BeAssignableTo<IEnumerable<Event>>().Subject.ToList();
-        
+
         events.Should().HaveCount(3);
         events.Should().BeInDescendingOrder(e => e.Date);
-        events.First().Title.Should().Be("Test Event 3"); // Latest date
+        events.First().Title.Should().Be("Test Event 3");
     }
 
     [Fact]
@@ -57,7 +57,7 @@ public class EventsControllerTests : IDisposable
         // Assert
         var actionResult = result.Result.Should().BeOfType<OkObjectResult>().Subject;
         var eventItem = actionResult.Value.Should().BeOfType<Event>().Subject;
-        
+
         eventItem.Id.Should().Be("test-event-1");
         eventItem.Title.Should().Be("Test Event 1");
     }
@@ -95,7 +95,7 @@ public class EventsControllerTests : IDisposable
         // Assert
         var actionResult = result.Result.Should().BeOfType<CreatedAtActionResult>().Subject;
         var createdEvent = actionResult.Value.Should().BeOfType<Event>().Subject;
-        
+
         createdEvent.Title.Should().Be(request.Title);
         createdEvent.Description.Should().Be(request.Description);
         createdEvent.Category.Should().Be(request.Category);
@@ -172,7 +172,7 @@ public class EventsControllerTests : IDisposable
         // Assert
         var actionResult = result.Result.Should().BeOfType<OkObjectResult>().Subject;
         var events = actionResult.Value.Should().BeAssignableTo<IEnumerable<Event>>().Subject.ToList();
-        
+
         events.Should().HaveCount(2);
         events.All(e => e.Category.Equals("Technology", StringComparison.OrdinalIgnoreCase)).Should().BeTrue();
         events.Should().BeInDescendingOrder(e => e.Date);

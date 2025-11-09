@@ -22,6 +22,7 @@ Tests/
 ## Test Coverage
 
 ### EventsController Tests
+
 - ✅ **GET /api/events** - Get all events with optional date filtering
 - ✅ **GET /api/events/{id}** - Get specific event by ID
 - ✅ **POST /api/events** - Create new event
@@ -30,12 +31,14 @@ Tests/
 - ✅ **GET /api/events/category/{category}** - Get events by category with filtering
 
 ### UsersController Tests
+
 - ✅ **POST /api/users/register** - User registration
 - ✅ **POST /api/users/login** - User login (existing and new users)
 - ✅ **GET /api/users/{id}** - Get user by ID
 - ✅ **GET /api/users/check-username/{username}** - Check username availability
 
 ### Database Tests
+
 - ✅ Entity creation and retrieval
 - ✅ Query operations (filtering, ordering)
 - ✅ Update and delete operations
@@ -45,12 +48,14 @@ Tests/
 ## Test Features
 
 ### Unit Tests
+
 - **In-Memory Database**: Each test uses an isolated in-memory database
 - **Mock Logging**: Proper logger mocking for controller dependencies
 - **Comprehensive Assertions**: FluentAssertions for readable test assertions
 - **Edge Case Coverage**: Tests for invalid inputs, not found scenarios, etc.
 
 ### Integration Tests
+
 - **Full HTTP Pipeline**: Tests complete request/response cycle
 - **Custom Test Server**: Isolated test environment with in-memory database
 - **JSON Serialization**: Proper handling of API request/response formats
@@ -60,6 +65,7 @@ Tests/
 ## Running the Tests
 
 ### Command Line
+
 ```bash
 # Run all tests
 dotnet test
@@ -79,6 +85,7 @@ dotnet test --filter "Method=GetEvents_WithNoFilters_ReturnsAllEventsOrderedByDa
 ```
 
 ### Visual Studio / VS Code
+
 - Use the Test Explorer to run individual tests or test suites
 - Debug tests by setting breakpoints and using "Debug Test"
 - View test results and coverage in the Test Output window
@@ -86,18 +93,22 @@ dotnet test --filter "Method=GetEvents_WithNoFilters_ReturnsAllEventsOrderedByDa
 ## Test Data
 
 ### Sample Events
+
 - **Test Event 1**: Technology category, 7 days from now
-- **Test Event 2**: Music category, 14 days from now  
+- **Test Event 2**: Music category, 14 days from now
 - **Test Event 3**: Technology category, 21 days from now
 
 ### Sample Users
+
 - **testuser1**: ID "test-user-1", password "password123"
 - **testuser2**: ID "test-user-2", password "password456"
 
 ## Test Patterns
 
 ### Arrange-Act-Assert (AAA)
+
 All tests follow the AAA pattern:
+
 ```csharp
 [Fact]
 public async Task MethodName_Scenario_ExpectedResult()
@@ -117,7 +128,9 @@ public async Task MethodName_Scenario_ExpectedResult()
 ```
 
 ### Test Method Naming
+
 Format: `MethodName_Scenario_ExpectedResult`
+
 - `GetEvents_WithNoFilters_ReturnsAllEventsOrderedByDateDescending`
 - `CreateEvent_WithValidRequest_CreatesEventAndReturnsCreatedResult`
 - `LoginUser_WithIncorrectPassword_ReturnsUnauthorized`
@@ -125,6 +138,7 @@ Format: `MethodName_Scenario_ExpectedResult`
 ## Testing Dependencies
 
 ### Core Testing Packages
+
 - **xUnit**: Primary testing framework
 - **FluentAssertions**: Readable assertion library
 - **Microsoft.AspNetCore.Mvc.Testing**: Integration testing support
@@ -132,6 +146,7 @@ Format: `MethodName_Scenario_ExpectedResult`
 - **Moq**: Mocking framework for dependencies
 
 ### Test-Specific Configurations
+
 - **In-Memory Database**: Isolated database per test to prevent interference
 - **Mock Logger**: Prevents logging noise during test execution
 - **Custom WebApplicationFactory**: Configures test server with test dependencies
@@ -149,6 +164,7 @@ Format: `MethodName_Scenario_ExpectedResult`
 ## Continuous Integration
 
 These tests are designed to run in CI/CD pipelines:
+
 - No external dependencies (uses in-memory database)
 - Fast execution (typically under 30 seconds for full suite)
 - Deterministic results (no time-dependent or random elements)
